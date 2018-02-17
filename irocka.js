@@ -16,27 +16,23 @@ var grid = [
 
 let findGridText = (grid) => {
   let yLen = grid.length;
-  if(!grid.length) {
+  if(!yLen) {
     return '';
   }
-  let xLen = grid[0].length;
-  let tmpStr = '';
-  let goingDown = true;
+  let xLen = grid[0].length,
+    tmpStr = '',
+    tmpJump = 1;
+
   for(let x = 0, y = 0; x < xLen; x += 1) {
     tmpStr += grid[y][x];
-    if(goingDown) {
-      y += 1;
-      if(y >= yLen) {
-        goingDown = false;
-        y -= 2;
+    if(tmpJump === 1) {
+      if(y === (yLen - 1)) {
+        tmpJump = -1;
       }
-    } else {
-      y -= 1;
-      if(0 > y) {
-        doingDown = true;
-        y += 2;
-      }
+    } else if(0 === y) {
+      tmpJump = 1;
     }
+    y += tmpJump;
   }
   return tmpStr;
 };
