@@ -16,7 +16,7 @@
 let sort = function (a, b) {
   var swapped,
     len = a.length;
-  if(b.length === len) {
+  if(b.length !== len) {
     return;
   }
   do {
