@@ -3,7 +3,7 @@ Given a list of words, create a master list that has sublists that contain anagr
 */
 
 
-var i = [
+let anagramsList = [
   'tar',
   'car',
   'thing',
@@ -35,14 +35,13 @@ var i = [
   'stressed'
 ];
 
-let sort = function (a) {
+let sort = a => {
   let swapped,
     len = a.length;
   do {
       swapped = false;
       for (let i = 0; i < len - 1; i += 1) {
           if (a[i] > a[i + 1]) {
-              let temp = a[i];
               a = a.substr(0, i) + a[i + 1] + a[i] + a.substr(i + 2);
               swapped = true;
           }
@@ -53,7 +52,7 @@ let sort = function (a) {
 
 let sortCache = {};
 
-let getSortWord = (word) => {
+let getSortWord = word => {
   let sortedWord;
   if(sortCache[word]) {
     sortedWord = sortCache[word];
@@ -91,4 +90,4 @@ let getAnagrams = arr => {
   return anagrams;
 };
 
-console.log(getAnagrams(i));
+console.log(getAnagrams(anagramsList));
