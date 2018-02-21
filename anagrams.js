@@ -29,8 +29,9 @@ var i = [
   'glean',
   'save',
   'angel',
-  'Robed',
+  'robed',
   'hin',
+  'tac',
   'stressed'
 ];
 
@@ -73,14 +74,21 @@ let areAnagrams = (word1, word2) => {
 
 let getAnagrams = arr => {
   let len = arr.length,
-    anagrams = [];
+    anagrams = [],
+    checkedIndexes = new Set();
   for (let y = 0; y < len; y += 1) {
-    for (var x = y  + 1; x < len; x += 1) {
-      if(areAnagrams(arr[y], arr[x])) {
-        anagrams.push([arr[y], arr[x]]);
+    if(!checkedIndexes.has(y)) {
+      var matches = [arr[y]];
+      for (var x = y  + 1; x < len; x += 1) {
+        if(areAnagrams(arr[y], arr[x])) {
+          matches.push(arr[x]);
+          checkedIndexes.add(x);
+        }
       }
+      anagrams.push(matches);
     }
   }
   return anagrams;
 };
+
 console.log(getAnagrams(i));
